@@ -1,9 +1,9 @@
 # Cyclistic-Case-Study-SQL
-Using BigQuery to clean, transform and analyze data. 
+###Using BigQuery to clean, transform and analyze data. 
 
 ## Google Data Analytics Capstone Project
-Cyclistic Case Study
-
+###Cyclistic Case Study
+---
 
 # Introduction
 
@@ -31,7 +31,7 @@ Cyclistic’s finance analysts have concluded that annual members are much more 
  Moreno has set a clear goal: Design marketing strategies aimed at converting casual riders into annual members. In order to do that, however, the marketing analyst team needs to better understand how annual members and casual riders differ, why casual riders would buy a membership, and how digital media could affect their marketing tactics. Moreno and her team are interested in analyzing the Cyclistic historical bike trip data to identify trends
 
 
-# 1.	ASK
+1.	ASK
 
 You will produce a report with the following deliverables:
 
@@ -46,11 +46,11 @@ a.	What is the business task?
 
 Analyze the previous 12 months of historical data for Cyclistic bike rentals in order to answer the following questions.
 
-•	How do annual members and casual riders use Cyclistic bikes differently?
-•	Why would casual riders buy Cyclistic annual memberships?
-•	How can Cyclistic use digital media to influence casual riders to become members?
+* How do annual members and casual riders use Cyclistic bikes differently?
+* Why would casual riders buy Cyclistic annual memberships?
+* How can Cyclistic use digital media to influence casual riders to become members?
 
-# 2.	PREPARE
+1.	PREPARE
 
 b.	Where is your data located? How is the data organized? 
 •	Data is located in CSV files that is made available by Motivate International Inc. publicly. 
@@ -74,7 +74,7 @@ b.	Where is your data located? How is the data organized?
 •	If this project were provided directly from an employer we would need to email to confirm that our conclusion on the missing stations was correct and if we it were possible to fill in the gaps missing in the data. 
 
 
-# 3.	PROCESS
+1.	PROCESS
 •	What tools are you choosing and why? 
 I am using a cloud SQL querying service through Google called BigQuery.  BigQuery is being used because it was the SQL language taught in the Google Data Analytics Certification Course. 
 Tableau will be used following the cleaning and analysis to visualize the data. It was also taught in the Google course. 
@@ -446,19 +446,21 @@ Next I count the number of members and casual users.
 --     member_casual     
       
 #Bike type usage and percentages. 
--- SELECT
---     member_casual,
---     rideable_type,
---     COUNT(1) AS count_rows,
---     ROUND(100*(COUNT(1) / 5829084),2) AS count_percent,
---     COUNT(DISTINCT start_date) AS count_dates,
--- FROM
---     `aesthetic-abbey-377903.Cyclistic.vtemp_divvytripdata`
--- GROUP BY
---     member_casual
---     ,rideable_type
--- ORDER BY
---     member_casual
+```sql
+SELECT
+    member_casual,
+    rideable_type,
+    COUNT(1) AS count_rows,
+    ROUND(100*(COUNT(1) / 5829084),2) AS count_percent,
+    COUNT(DISTINCT start_date) AS count_dates,
+FROM
+    `aesthetic-abbey-377903.Cyclistic.vtemp_divvytripdata`
+GROUP BY
+    member_casual
+    ,rideable_type
+ORDER BY
+    member_casual
+```
             # Only on one day were electric bikes not used and only by casual renters.     
       
 
