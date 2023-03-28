@@ -16,13 +16,13 @@ You are a junior data analyst working in the marketing analyst team at Cyclistic
 
 # Characters and teams
 
-	● Cyclistic: A bike-share program that features more than 5,800 bicycles and 600 docking stations. Cyclistic sets itself apart by also offering reclining bikes, hand tricycles, and cargo bikes, making bike-share more inclusive to people with disabilities and riders who can’t use a standard two-wheeled bike. The majority of riders opt for traditional bikes; about 8% of riders use the assistive options. Cyclistic users are more likely to ride for leisure, but about 30% use them to commute to work each day. 
-	 
-	● Lily Moreno: The director of marketing and your manager. Moreno is responsible for the development of campaigns and initiatives to promote the bike-share program. These may include email, social media, and other channels. 
-	
-	● Cyclistic marketing analytics team: A team of data analysts who are responsible for collecting, analyzing, and reporting data that helps guide Cyclistic marketing strategy. You joined this team six months ago and have been busy learning about Cyclistic’s mission and business goals — as well as how you, as a junior data analyst, can help Cyclistic achieve them. 
-	
-	● Cyclistic executive team: The notoriously detail-oriented executive team will decide whether to approve the recommended marketing program. 
+● Cyclistic: A bike-share program that features more than 5,800 bicycles and 600 docking stations. Cyclistic sets itself apart by also offering reclining bikes, hand tricycles, and cargo bikes, making bike-share more inclusive to people with disabilities and riders who can’t use a standard two-wheeled bike. The majority of riders opt for traditional bikes; about 8% of riders use the assistive options. Cyclistic users are more likely to ride for leisure, but about 30% use them to commute to work each day. 
+
+● 	Lily Moreno: The director of marketing and your manager. Moreno is responsible for the development of campaigns and initiatives to promote the bike-share program. These may include email, social media, and other channels. 
+
+● 	Cyclistic marketing analytics team: A team of data analysts who are responsible for collecting, analyzing, and reporting data that helps guide Cyclistic marketing strategy. You joined this team six months ago and have been busy learning about Cyclistic’s mission and business goals — as well as how you, as a junior data analyst, can help Cyclistic achieve them. 
+
+● 	Cyclistic executive team: The notoriously detail-oriented executive team will decide whether to approve the recommended marketing program. 
 
 ## About the company 
 
@@ -46,7 +46,7 @@ You will produce a report with the following deliverables:
 1. Supporting visualizations and key findings 
 1. Your top three recommendations based on your analysis
 
-a.	What is the business task?
+**a.	What is the business task?**
 
 #### Analyze the previous 12 months of historical data for Cyclistic bike rentals in order to answer the following questions.
 
@@ -56,34 +56,37 @@ a.	What is the business task?
 
 ## 2.	PREPARE
 
-a. Where is your data located? How is the data organized? 
+**b. Where is your data located? How is the data organized? **
 *	Data is located in CSV files that is made available by Motivate International Inc. publicly. 
-*	The data is broken down into columns that among many things Identifies the a ride_id, start/end time, start/end location, longitude/latitude and whether the rider is a member or casual. 
+The data is broken down into columns that among many things Identifies the a ride_id, start/end time, start/end location, longitude/latitude and whether the rider is a member or casual. 
 *	 Are there issues with bias or credibility in this data? Does your data ROCCC (R eliable, O riginal, C omprehensive, C urrent, and C ited.) Reliable? 
-*	The data appears to be credible because it comes form an LLC that is contracted to run the City of Chicago’s bicycle sharing service. 
-*	The data is missing values under stations…  The reasons could be the following:
-*	There are not enough stations to house every bicycle. 
-*	Bicycles were acquired and abandoned at riders destinations where stations were not available. 
+The data appears to be credible because it comes form an LLC that is contracted to run the City of Chicago’s bicycle sharing service. 
+The data is missing values under stations…  The reasons could be the following:
+**	There are not enough stations to house every bicycle. 
+**	Bicycles were acquired and abandoned at riders destinations where stations were not available. 
 *	 How are you addressing licensing, privacy, security, and accessibility? 
-*	Licensing has been granted for data to be made available for public use
-*	No personal information is provided that could be linked to the rider. 
-*	Data that has been downloaded does not need to be destroyed upon completion of work because it is published publicly. 
+Licensing has been granted for data to be made available for public use
+No personal information is provided that could be linked to the rider. 
+Data that has been downloaded does not need to be destroyed upon completion of work because it is published publicly. 
 	
 *	 How did you verify the data’s integrity? 
-*	Divvy program is verifiable through licensing provided on website and confirmed through Chicago.gov. 
+Divvy program is verifiable through licensing provided on website and confirmed through Chicago.gov. 
 *	 How does it help you answer your question? 
-*	Becoming familiar with the characters, data and stakeholders provide a better grounding of the environment that the questions if formed from. 
+Becoming familiar with the characters, data and stakeholders provide a better grounding of the environment that the questions if formed from. 
 *	 Are there any problems with the data? 
-*	Mentioned above, it appears that there are stations missing but the steps taken to prepare have provided sufficient answers given resources available. 
-*	If this project were provided directly from an employer we would need to email to confirm that our conclusion on the missing stations was correct and if we it were possible to fill in the gaps missing in the data. 
+Mentioned above, it appears that there are stations missing but the steps taken to prepare have provided sufficient answers given resources available. 
+If this project were provided directly from an employer we would need to email to confirm that our conclusion on the missing stations was correct and if we it were possible to fill in the gaps missing in the data. 
 
 
 ## 3. PROCESS
+
 *	What tools are you choosing and why? 
+
 I am using a cloud SQL querying service through Google called BigQuery.  BigQuery is being used because it was the SQL language taught in the Google Data Analytics Certification Course. 
 Tableau will be used following the cleaning and analysis to visualize the data. It was also taught in the Google course. 
 
 *	Have you ensured your data’s integrity? 
+
 I started by making sure the schema is identical for each data set that was downloaded from Divvy. Because each data set only contains information for the corresponding month each will have to be merged before use. 
 
 ```sql
@@ -103,7 +106,8 @@ SELECT *
    table_name = "202212-divvy-tripdata"  OR
    table_name = "202301-divvy-tripdata"  OR
    table_name = "202302-divvy-tripdata"
- ORDER BY column_name, table_name```
+ ORDER BY column_name, table_name
+ ```
 
 #Need to merge all of the datasets into one dataset using UNION ALL
 
@@ -175,6 +179,7 @@ FROM `aesthetic-abbey-377903.Cyclistic.v1_divvytripdata`
 •	What steps have you taken to ensure that your data is clean?
 #Begin reviewing data and cleaning. 
 #Looking for spaces in the station id's
+
 ```sql
 SELECT 
   start_station_id, end_station_id
