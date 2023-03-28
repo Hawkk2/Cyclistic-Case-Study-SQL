@@ -56,24 +56,31 @@ You will produce a report with the following deliverables:
 
 ## 2.	PREPARE
 
-**b. Where is your data located? How is the data organized? **
+**b. Where is your data located? How is the data organized?**
+
 *	Data is located in CSV files that is made available by Motivate International Inc. publicly. 
+
 The data is broken down into columns that among many things Identifies the a ride_id, start/end time, start/end location, longitude/latitude and whether the rider is a member or casual. 
 *	 Are there issues with bias or credibility in this data? Does your data ROCCC (R eliable, O riginal, C omprehensive, C urrent, and C ited.) Reliable? 
+
 The data appears to be credible because it comes form an LLC that is contracted to run the City of Chicago’s bicycle sharing service. 
 The data is missing values under stations…  The reasons could be the following:
-**	There are not enough stations to house every bicycle. 
-**	Bicycles were acquired and abandoned at riders destinations where stations were not available. 
+*	There are not enough stations to house every bicycle. 
+
+	Bicycles were acquired and abandoned at riders destinations where stations were not available. 
 *	 How are you addressing licensing, privacy, security, and accessibility? 
 Licensing has been granted for data to be made available for public use
 No personal information is provided that could be linked to the rider. 
 Data that has been downloaded does not need to be destroyed upon completion of work because it is published publicly. 
 	
-*	 How did you verify the data’s integrity? 
+*	 How did you verify the data’s integrity?
+
 Divvy program is verifiable through licensing provided on website and confirmed through Chicago.gov. 
 *	 How does it help you answer your question? 
+
 Becoming familiar with the characters, data and stakeholders provide a better grounding of the environment that the questions if formed from. 
 *	 Are there any problems with the data? 
+
 Mentioned above, it appears that there are stations missing but the steps taken to prepare have provided sufficient answers given resources available. 
 If this project were provided directly from an employer we would need to email to confirm that our conclusion on the missing stations was correct and if we it were possible to fill in the gaps missing in the data. 
 
