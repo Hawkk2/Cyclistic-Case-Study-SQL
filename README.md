@@ -1,22 +1,26 @@
 # Cyclistic-Case-Study-SQL
 Using BigQuery to clean, transform and analyze data. 
 
-Google Data Analytics Capstone Project
+## Google Data Analytics Capstone Project
 Cyclistic Case Study
 
 
-Introduction
+# Introduction
 
 
 My name is Caleb Haqq. I am beginning a new career in Data Analytics and this document is one of a series that I have made to demonstrate my learned skills in the data analysis process.  This case study will show my completion of the Google Data Analytics Professional Certificate. The document you are viewing displays my use of SQL queries using Google’s BigQuery. Other post will demonstrate other languages and tools used as a data analyst.
 
-Scenario
+# Scenario
 
 You are a junior data analyst working in the marketing analyst team at Cyclistic, a bike-share company in Chicago. The director of marketing believes the company’s future success depends on maximizing the number of annual memberships. Therefore, your team wants to understand how casual riders and annual members use Cyclistic bikes differently. From these insights, your team will design a new marketing strategy to convert casual riders into annual members. But first, Cyclistic executives must approve your recommendations, so they must be backed up with compelling data insights and professional data visualizations. 
 Characters and teams
+
  ● Cyclistic: A bike-share program that features more than 5,800 bicycles and 600 docking stations. Cyclistic sets itself apart by also offering reclining bikes, hand tricycles, and cargo bikes, making bike-share more inclusive to people with disabilities and riders who can’t use a standard two-wheeled bike. The majority of riders opt for traditional bikes; about 8% of riders use the assistive options. Cyclistic users are more likely to ride for leisure, but about 30% use them to commute to work each day. 
+ 
 ● Lily Moreno: The director of marketing and your manager. Moreno is responsible for the development of campaigns and initiatives to promote the bike-share program. These may include email, social media, and other channels. 
+
 ● Cyclistic marketing analytics team: A team of data analysts who are responsible for collecting, analyzing, and reporting data that helps guide Cyclistic marketing strategy. You joined this team six months ago and have been busy learning about Cyclistic’s mission and business goals — as well as how you, as a junior data analyst, can help Cyclistic achieve them. 
+
 ● Cyclistic executive team: The notoriously detail-oriented executive team will decide whether to approve the recommended marketing program. 
 
 About the company 
@@ -27,7 +31,7 @@ Cyclistic’s finance analysts have concluded that annual members are much more 
  Moreno has set a clear goal: Design marketing strategies aimed at converting casual riders into annual members. In order to do that, however, the marketing analyst team needs to better understand how annual members and casual riders differ, why casual riders would buy a membership, and how digital media could affect their marketing tactics. Moreno and her team are interested in analyzing the Cyclistic historical bike trip data to identify trends
 
 
-1.	ASK
+# 1.	ASK
 
 You will produce a report with the following deliverables:
 
@@ -46,7 +50,7 @@ Analyze the previous 12 months of historical data for Cyclistic bike rentals in 
 •	Why would casual riders buy Cyclistic annual memberships?
 •	How can Cyclistic use digital media to influence casual riders to become members?
 
-2.	PREPARE
+# 2.	PREPARE
 
 b.	Where is your data located? How is the data organized? 
 •	Data is located in CSV files that is made available by Motivate International Inc. publicly. 
@@ -70,7 +74,7 @@ b.	Where is your data located? How is the data organized?
 •	If this project were provided directly from an employer we would need to email to confirm that our conclusion on the missing stations was correct and if we it were possible to fill in the gaps missing in the data. 
 
 
-3.	PROCESS
+# 3.	PROCESS
 •	What tools are you choosing and why? 
 I am using a cloud SQL querying service through Google called BigQuery.  BigQuery is being used because it was the SQL language taught in the Google Data Analytics Certification Course. 
 Tableau will be used following the cleaning and analysis to visualize the data. It was also taught in the Google course. 
@@ -95,7 +99,7 @@ I started by making sure the schema is identical for each data set that was down
 --   table_name = "202302-divvy-tripdata"
 -- ORDER BY column_name, table_name
 
-##Need to merge all of the datasets into one dataset using UNION ALL
+#Need to merge all of the datasets into one dataset using UNION ALL
 
 -- CREATE OR REPLACE TABLE Cyclistic.v1_divvytripdata AS 
 -- (
@@ -141,7 +145,7 @@ I started by making sure the schema is identical for each data set that was down
 -- FROM `aesthetic-abbey-377903.Cyclistic.v1_divvytripdata`
 
 #This gives a count of the distinct values for each column. C
-# Can gleam some insite from comparing the locations with the station names. 
+#Can gleam some insite from comparing the locations with the station names. 
 -- SELECT
 --   COUNT(DISTINCT ride_id) AS rideId,
 --   COUNT(DISTINCT start_station_name) AS startStationName,
@@ -155,7 +159,7 @@ I started by making sure the schema is identical for each data set that was down
 -- FROM `aesthetic-abbey-377903.Cyclistic.v1_divvytripdata`
 
 
-•	What steps have you taken to ensure that your data is clean? 
+**•	What steps have you taken to ensure that your data is clean?** 
 #Begin reviewing data and cleaning. 
 #Looking for spaces in the station id's
 -- SELECT 
@@ -169,7 +173,9 @@ I started by making sure the schema is identical for each data set that was down
 --   AND end_station_id LIKE '% %'
   #After running I discovered something called (LBS-WH-TEST) and Warehouse test station
 
-# IF ALL OF THESE ARE NEGATIVE DURATIONS THEN DELETE BY NAME. 
+
+
+#IF ALL OF THESE ARE NEGATIVE DURATIONS THEN DELETE BY NAME. 
 -- SELECT DISTINCT start_station_id
 -- FROM `aesthetic-abbey-377903.Cyclistic.v1_divvytripdata`
 -- WHERE start_station_id = "Hubbard Bike-checking (LBS-WH-TEST)"
@@ -177,7 +183,7 @@ I started by making sure the schema is identical for each data set that was down
 
 --DELETE FROM `aesthetic-abbey-377903.Cyclistic.v1_divvytripdata` 
 --WHERE start_station_id = "Hubbard Bike-checking (LBS-WH-TEST)"
-# We removed the Test cases. 
+#We removed the Test cases. 
 
 #Need to Count how many instances of %TEST% and %test%
 #Hubbard Bike-checking (LBS-WH-TEST)
@@ -194,7 +200,7 @@ I started by making sure the schema is identical for each data set that was down
 
 -- DELETE FROM `aesthetic-abbey-377903.Cyclistic.v1_divvytripdata` 
 -- WHERE start_station_id = "DIVVY 001 - Warehouse test station"
-# Delete remaining test cases
+#Delete remaining test cases
 
 •	How can you verify that your data is clean and ready to analyze? 
 
@@ -272,7 +278,7 @@ I started by making sure the schema is identical for each data set that was down
 -- HAVING count(distinct start_lat) > 1000
 --     AND count(distinct start_lng) > 1000
 
-# This shows that there are more than 3000 distinct start_latitudes for the station "Sheffield Ave & Fullerton Ave".
+#This shows that there are more than 3000 distinct start_latitudes for the station "Sheffield Ave & Fullerton Ave".
 -- SELECT 
 --   DISTINCT start_lat,
 -- FROM `aesthetic-abbey-377903.Cyclistic.vtemp_divvytripdata`
@@ -319,7 +325,7 @@ I started by making sure the schema is identical for each data set that was down
 -- LEFT JOIN aesthetic-abbey-377903.Cyclistic.vtemp3grouped_stations s on a.start_station_name = s.station_name
 -- LEFT JOIN aesthetic-abbey-377903.Cyclistic.vtemp3grouped_stations e on a.end_station_name = e.station_name
 
-# Double checking that the consolidation of the lat and lng looks correct. 
+#Double checking that the consolidation of the lat and lng looks correct. 
 -- SELECT COUNT(DISTINCT start_station_name) AS start_station_name,
 -- COUNT(DISTINCT start_station_id) AS start_station_id,
 --   COUNT(DISTINCT start_lat) AS start_station_latitude,
@@ -331,7 +337,7 @@ I started by making sure the schema is identical for each data set that was down
 -- FROM `aesthetic-abbey-377903.Cyclistic.v4_divvytripdata`
 -- WHERE end_lat IS NOT NULL
 
-# Finally Cleaning the table of any remaining extra spaces at the beginning or end of key columns
+#Finally Cleaning the table of any remaining extra spaces at the beginning or end of key columns
 -- CREATE OR REPLACE TABLE `aesthetic-abbey-377903.Cyclistic.vtemp_divvytripdata` AS
 -- SELECT
 --     TRIM(ride_id) AS ride_id
@@ -351,7 +357,7 @@ Before pulling statistical info from the dataset I create a few new columns that
 
 #Create new table with the Duration of each ride as ride_length. 
 #Then replace table adding in round_trip. 
-# DATETIME_DIFF(date1, date2, interval)
+#DATETIME_DIFF(date1, date2, interval)
 -- CREATE OR REPLACE TABLE Cyclistic.v2_divvytripdata AS
 -- SELECT
 --   *, DATETIME_DIFF(ended_at, started_at, SECOND) AS ride_length
@@ -364,7 +370,7 @@ Before pulling statistical info from the dataset I create a few new columns that
 -- FROM 
 --  `aesthetic-abbey-377903.Cyclistic.v2_divvytripdata`
 
-# Converts started_at(Date) into Day, DayofWeek, Week, Month Year and start_date. Then save into table. 
+#Converts started_at(Date) into Day, DayofWeek, Week, Month Year and start_date. Then save into table. 
 -- CREATE OR REPLACE TABLE Cyclistic.v3_divvytripdata AS
 -- SELECT *,
 --   TIME(EXTRACT(HOUR FROM started_at),0,0) AS start_hour,
@@ -380,9 +386,9 @@ Next I count the number of members and casual users.
 -- SELECT COUNT(*)
 -- FROM `aesthetic-abbey-377903.Cyclistic.vtemp_divvytripdata`
 -- WHERE member_casual = "member"
-   # 3,463,964
+   #3,463,964
 
-  # Count the number of casual rides  
+#Count the number of casual rides  
 -- SELECT COUNT(*)
 -- FROM `aesthetic-abbey-377903.Cyclistic.vtemp_divvytripdata`
 -- WHERE member_casual = "casual" 
@@ -439,7 +445,7 @@ Next I count the number of members and casual users.
 -- GROUP BY
 --     member_casual     
       
-  # Bike type usage and percentages. 
+#Bike type usage and percentages. 
 -- SELECT
 --     member_casual,
 --     rideable_type,
