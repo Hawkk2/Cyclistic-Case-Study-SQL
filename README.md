@@ -157,19 +157,20 @@ CREATE OR REPLACE TABLE Cyclistic.v1_divvytripdata AS
  SELECT * 
  FROM `aesthetic-abbey-377903.Cyclistic.202302-divvy-tripdata`
 )
-#There should only be 2 distinct values in this column.```
+```
 
 ```sql
 SELECT 
   DISTINCT(member_casual)
 FROM 
   `aesthetic-abbey-377903.Cyclistic.v1_divvytripdata`
+#Only be 2 distinct values in this column.
 ```
 
+```sql
 #This gives a count of the distinct values for each column. C
 #Can gleam some insite from comparing the locations with the station names. 
 
-```sql
 SELECT
   COUNT(DISTINCT ride_id) AS rideId,
   COUNT(DISTINCT start_station_name) AS startStationName,
