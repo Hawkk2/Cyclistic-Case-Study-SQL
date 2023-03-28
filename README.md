@@ -160,14 +160,14 @@ CREATE OR REPLACE TABLE Cyclistic.v1_divvytripdata AS
 ```
 
 ```sql
-**Searching to make sure there are not any other values than "member" and casual".**
+Searching to make sure there are not any other values than "member" and casual".
 
 SELECT 
   DISTINCT(member_casual)
 FROM 
   `aesthetic-abbey-377903.Cyclistic.v1_divvytripdata`
   
-**Only 2 distinct values in query results.**
+Only 2 distinct values in query results.
 ```
 
 ```sql
