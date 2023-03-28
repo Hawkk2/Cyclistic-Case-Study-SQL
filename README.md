@@ -31,7 +31,7 @@ Cyclistic’s finance analysts have concluded that annual members are much more 
  Moreno has set a clear goal: Design marketing strategies aimed at converting casual riders into annual members. In order to do that, however, the marketing analyst team needs to better understand how annual members and casual riders differ, why casual riders would buy a membership, and how digital media could affect their marketing tactics. Moreno and her team are interested in analyzing the Cyclistic historical bike trip data to identify trends
 
 
-1.	ASK
+## 1.	ASK
 
 You will produce a report with the following deliverables:
 
@@ -50,36 +50,36 @@ Analyze the previous 12 months of historical data for Cyclistic bike rentals in 
 * Why would casual riders buy Cyclistic annual memberships?
 * How can Cyclistic use digital media to influence casual riders to become members?
 
-2.	PREPARE
+## 2.	PREPARE
 
 b.	Where is your data located? How is the data organized? 
-•	Data is located in CSV files that is made available by Motivate International Inc. publicly. 
-•	The data is broken down into columns that among many things Identifies the a ride_id, start/end time, start/end location, longitude/latitude and whether the rider is a member or casual. 
-•	 Are there issues with bias or credibility in this data? Does your data ROCCC (R eliable, O riginal, C omprehensive, C urrent, and C ited.) Reliable? 
-•	The data appears to be credible because it comes form an LLC that is contracted to run the City of Chicago’s bicycle sharing service. 
-•	The data is missing values under stations…  The reasons could be the following:
-•	There are not enough stations to house every bicycle. 
-•	Bicycles were acquired and abandoned at riders destinations where stations were not available. 
-•	 How are you addressing licensing, privacy, security, and accessibility? 
-•	Licensing has been granted for data to be made available for public use
-•	No personal information is provided that could be linked to the rider. 
-•	Data that has been downloaded does not need to be destroyed upon completion of work because it is published publicly. 
-•	
-•	 How did you verify the data’s integrity? 
-•	Divvy program is verifiable through licensing provided on website and confirmed through Chicago.gov. 
-•	 How does it help you answer your question? 
-•	Becoming familiar with the characters, data and stakeholders provide a better grounding of the environment that the questions if formed from. 
-•	 Are there any problems with the data? 
-•	Mentioned above, it appears that there are stations missing but the steps taken to prepare have provided sufficient answers given resources available. 
-•	If this project were provided directly from an employer we would need to email to confirm that our conclusion on the missing stations was correct and if we it were possible to fill in the gaps missing in the data. 
+*	Data is located in CSV files that is made available by Motivate International Inc. publicly. 
+*	The data is broken down into columns that among many things Identifies the a ride_id, start/end time, start/end location, longitude/latitude and whether the rider is a member or casual. 
+*	 Are there issues with bias or credibility in this data? Does your data ROCCC (R eliable, O riginal, C omprehensive, C urrent, and C ited.) Reliable? 
+*	The data appears to be credible because it comes form an LLC that is contracted to run the City of Chicago’s bicycle sharing service. 
+*	The data is missing values under stations…  The reasons could be the following:
+*	There are not enough stations to house every bicycle. 
+*	Bicycles were acquired and abandoned at riders destinations where stations were not available. 
+*	 How are you addressing licensing, privacy, security, and accessibility? 
+*	Licensing has been granted for data to be made available for public use
+*	No personal information is provided that could be linked to the rider. 
+*	Data that has been downloaded does not need to be destroyed upon completion of work because it is published publicly. 
+	
+*	 How did you verify the data’s integrity? 
+*	Divvy program is verifiable through licensing provided on website and confirmed through Chicago.gov. 
+*	 How does it help you answer your question? 
+*	Becoming familiar with the characters, data and stakeholders provide a better grounding of the environment that the questions if formed from. 
+*	 Are there any problems with the data? 
+*	Mentioned above, it appears that there are stations missing but the steps taken to prepare have provided sufficient answers given resources available. 
+*	If this project were provided directly from an employer we would need to email to confirm that our conclusion on the missing stations was correct and if we it were possible to fill in the gaps missing in the data. 
 
 
 3.	PROCESS
-•	What tools are you choosing and why? 
+*	What tools are you choosing and why? 
 I am using a cloud SQL querying service through Google called BigQuery.  BigQuery is being used because it was the SQL language taught in the Google Data Analytics Certification Course. 
 Tableau will be used following the cleaning and analysis to visualize the data. It was also taught in the Google course. 
 
-•	Have you ensured your data’s integrity? 
+*	Have you ensured your data’s integrity? 
 I started by making sure the schema is identical for each data set that was downloaded from Divvy. Because each data set only contains information for the corresponding month each will have to be merged before use. 
 ```sql
 SELECT *
@@ -201,11 +201,13 @@ DELETE FROM
   `aesthetic-abbey-377903.Cyclistic.v1_divvytripdata` 
 WHERE 
   start_station_id = "Hubbard Bike-checking (LBS-WH-TEST)"
-  ```
+```
+
 #We removed the Test cases. 
 
 #Need to Count how many instances of %TEST% and %test%
 #Hubbard Bike-checking (LBS-WH-TEST)
+
 ```sql
 SELECT
   start_station_id, end_station_id
@@ -217,6 +219,7 @@ WHERE
   OR end_station_id LIKE '%Test%'
   OR end_station_id LIKE '%test%'
 ```
+
 #DIVVY 001 - Warehouse test station is returned 10x
 
 ```sql
@@ -225,11 +228,12 @@ DELETE FROM
 WHERE 
   start_station_id = "DIVVY 001 - Warehouse test station"
 ```
-#Delete remaining test cases
+
+   #Delete remaining test cases
 
 *	How can you verify that your data is clean and ready to analyze? 
 
-#We are looking for blank spaces in ride_id
+   #We are looking for blank spaces in ride_id
 ```sql
 SELECT 
   DISTINCT ride_id
@@ -238,11 +242,12 @@ FROM
 WHERE 
   ride_id LIKE '% %'
 ORDER BY 
-  ride_id ASC
-```
+  ride_id ASC```
+
     #No spaces found
     
-  #Verifying there are no duplicate ride_ids
+   #Verifying there are no duplicate ride_ids
+   
 ```sql
 SELECT
   COUNT(DISTINCT ride_id)
