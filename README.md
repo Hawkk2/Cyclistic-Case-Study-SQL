@@ -8,12 +8,13 @@
 # Introduction
 
 
-	My name is Caleb Haqq. I am beginning a new career in Data Analytics and this document is one of a series that I have made to demonstrate my learned skills in the data analysis process.  This case study will show my completion of the Google Data Analytics Professional Certificate. The document you are viewing displays my use of SQL queries using Google’s BigQuery. Other post will demonstrate other languages and tools used as a data analyst.
+My name is Caleb Haqq. I am beginning a new career in Data Analytics and this document is one of a series that I have made to demonstrate my learned skills in the data analysis process.  This case study will show my completion of the Google Data Analytics Professional Certificate. The document you are viewing displays my use of SQL queries using Google’s BigQuery. Other post will demonstrate other languages and tools used as a data analyst.
 
 # Scenario
 
-	You are a junior data analyst working in the marketing analyst team at Cyclistic, a bike-share company in Chicago. The director of marketing believes the company’s future success depends on maximizing the number of annual memberships. Therefore, your team wants to understand how casual riders and annual members use Cyclistic bikes differently. From these insights, your team will design a new marketing strategy to convert casual riders into annual members. But first, Cyclistic executives must approve your recommendations, so they must be backed up with compelling data insights and professional data visualizations. 
-Characters and teams
+You are a junior data analyst working in the marketing analyst team at Cyclistic, a bike-share company in Chicago. The director of marketing believes the company’s future success depends on maximizing the number of annual memberships. Therefore, your team wants to understand how casual riders and annual members use Cyclistic bikes differently. From these insights, your team will design a new marketing strategy to convert casual riders into annual members. But first, Cyclistic executives must approve your recommendations, so they must be backed up with compelling data insights and professional data visualizations. 
+
+# Characters and teams
 
 	● Cyclistic: A bike-share program that features more than 5,800 bicycles and 600 docking stations. Cyclistic sets itself apart by also offering reclining bikes, hand tricycles, and cargo bikes, making bike-share more inclusive to people with disabilities and riders who can’t use a standard two-wheeled bike. The majority of riders opt for traditional bikes; about 8% of riders use the assistive options. Cyclistic users are more likely to ride for leisure, but about 30% use them to commute to work each day. 
 	 
@@ -25,9 +26,12 @@ Characters and teams
 
 ## About the company 
 
-	In 2016, Cyclistic launched a successful bike-share offering. Since then, the program has grown to a fleet of 5,824 bicycles that are geotracked and locked into a network of 692 stations across Chicago. The bikes can be unlocked from one station and returned to any other station in the system anytime. 
+In 2016, Cyclistic launched a successful bike-share offering. Since then, the program has grown to a fleet of 5,824 bicycles that are geotracked and locked into a network of 692 stations across Chicago. The bikes can be unlocked from one station and returned to any other station in the system anytime. 
+
 Until now, Cyclistic’s marketing strategy relied on building general awareness and appealing to broad consumer segments. One approach that helped make these things possible was the flexibility of its pricing plans: single-ride passes, full-day passes, and annual memberships. Customers who purchase single-ride or full-day passes are referred to as casual riders. Customers who purchase annual memberships are Cyclistic members. 
+
 Cyclistic’s finance analysts have concluded that annual members are much more profitable than casual riders. Although the pricing flexibility helps Cyclistic attract more customers, Moreno believes that maximizing the number of annual members will be key to future growth. Rather than creating a marketing campaign that targets all-new customers, Moreno believes there is a very good chance to convert casual riders into members. She notes that casual riders are already aware of the Cyclistic program and have chosen Cyclistic for their mobility needs.
+
  Moreno has set a clear goal: Design marketing strategies aimed at converting casual riders into annual members. In order to do that, however, the marketing analyst team needs to better understand how annual members and casual riders differ, why casual riders would buy a membership, and how digital media could affect their marketing tactics. Moreno and her team are interested in analyzing the Cyclistic historical bike trip data to identify trends
 
 
@@ -35,12 +39,12 @@ Cyclistic’s finance analysts have concluded that annual members are much more 
 
 You will produce a report with the following deliverables:
 
-a. A clear statement of the business task 
-a. A description of all data sources used
-a. Documentation of any cleaning or manipulation of data 
-a. A summary of your analysis 
-a. Supporting visualizations and key findings 
-a. Your top three recommendations based on your analysis
+1. A clear statement of the business task 
+1. A description of all data sources used
+1. Documentation of any cleaning or manipulation of data 
+1. A summary of your analysis 
+1. Supporting visualizations and key findings 
+1. Your top three recommendations based on your analysis
 
 a.	What is the business task?
 
@@ -81,6 +85,7 @@ Tableau will be used following the cleaning and analysis to visualize the data. 
 
 *	Have you ensured your data’s integrity? 
 I started by making sure the schema is identical for each data set that was downloaded from Divvy. Because each data set only contains information for the corresponding month each will have to be merged before use. 
+
 ```sql
 SELECT *
  FROM
@@ -98,8 +103,7 @@ SELECT *
    table_name = "202212-divvy-tripdata"  OR
    table_name = "202301-divvy-tripdata"  OR
    table_name = "202302-divvy-tripdata"
- ORDER BY column_name, table_name
- ```
+ ORDER BY column_name, table_name```
 
 #Need to merge all of the datasets into one dataset using UNION ALL
 
@@ -142,8 +146,8 @@ CREATE OR REPLACE TABLE Cyclistic.v1_divvytripdata AS
  SELECT * 
  FROM `aesthetic-abbey-377903.Cyclistic.202302-divvy-tripdata`
 )
-```
-#There should only be 2 distinct values in this column. 
+#There should only be 2 distinct values in this column.```
+
 ```sql
 SELECT 
   DISTINCT(member_casual)
@@ -153,6 +157,7 @@ FROM
 
 #This gives a count of the distinct values for each column. C
 #Can gleam some insite from comparing the locations with the station names. 
+
 ```sql
 SELECT
   COUNT(DISTINCT ride_id) AS rideId,
@@ -167,7 +172,7 @@ SELECT
 FROM `aesthetic-abbey-377903.Cyclistic.v1_divvytripdata`
 ```
 
-**•	What steps have you taken to ensure that your data is clean?** 
+•	What steps have you taken to ensure that your data is clean?
 #Begin reviewing data and cleaning. 
 #Looking for spaces in the station id's
 ```sql
@@ -255,8 +260,8 @@ FROM
   `aesthetic-abbey-377903.Cyclistic.v1_divvytripdata`
 ```
       # Number of distinct ride_ids matches with the total number of rows in data set.
-
 #Double check no duplicates in ride_id
+
 ```sql
 SELECT 
   ride_id, COUNT(1) 
@@ -266,8 +271,8 @@ GROUP BY
   ride_id HAVING COUNT(1) > 1
 ```
       #This further confirms that there are no duplicate rides unless the duplicate can have a unique ride_id. 
-
 #The following are queries to find if there are duplicate rentals at the exact same time and location
+
 ```sql
 SELECT 
   * EXCEPT(row_number)
@@ -283,6 +288,7 @@ ORDER BY
       #This results 714 identical start and end times but with the frequency and amount of rentals it is possible for identical start and end times. 
       
 #Ran a test of one of the results to see the two identical start and end times
+
 ```sql
 SELECT * 
     FROM `aesthetic-abbey-377903.Cyclistic.v1_divvytripdata`
@@ -308,6 +314,7 @@ ORDER BY
       #The ride_id's of these rides will be provided
       
 #This tells us how many null values exist in each core column. 
+
 ```sql
 SELECT
   SUM(CASE WHEN rideable_type IS NULL THEN 1 ELSE 0 END) AS null_rideable_type,
@@ -323,11 +330,13 @@ SELECT
 FROM
   `aesthetic-abbey-377903.Cyclistic.v1_divvytripdata`
 ```
+
       #Station names, and end lat/lng have the only NULL values. 
       #Display results in table.
 
     
-#Cleaning the extra Lat and Lng for each station. This needs to be done because the Latitude and Longitude are recording multiple precise locations within the station. 
+#Cleaning the extra Lat and Lng for each station. This needs to be done because the Latitude and Longitude are recording multiple precise locations within the station.
+
 ```sql
 SELECT start_station_name,
   count(distinct start_lat) as count_lat,
@@ -438,12 +447,13 @@ CREATE OR REPLACE TABLE `aesthetic-abbey-377903.Cyclistic.vtemp_divvytripdata` A
 *	Have you documented your cleaning process so you can review and share those results?
 All documentation of cleaning is recorded and explained above. 
 
-1.	ANALYZE
+## 1.	ANALYZE
 Before pulling statistical info from the dataset I create a few new columns that will allow me to do more with the set. 
 
 #Create new table with the Duration of each ride as ride_length. 
 #Then replace table adding in round_trip. 
 #DATETIME_DIFF(date1, date2, interval)
+
 ```sql
 CREATE OR REPLACE TABLE 
     Cyclistic.v2_divvytripdata AS
@@ -462,6 +472,7 @@ CREATE OR REPLACE TABLE
    
 
 #Converts started_at(Date) into Day, DayofWeek, Week, Month Year and start_date. Then save into table. 
+
 ```sql
 CREATE OR REPLACE TABLE 
     Cyclistic.v3_divvytripdata AS
@@ -477,6 +488,7 @@ CREATE OR REPLACE TABLE
 ```
 
 Next I count the number of members and casual users. 
+
 ```sql
 SELECT 
   COUNT(*)
@@ -506,10 +518,12 @@ FROM
   `aesthetic-abbey-377903.Cyclistic.vtemp_divvytripdata`
 ORDER BY
   member_casual DESC
-```sql
+```
+
       #Member=524 or 8.7 min,  Casual=770 or 12.8 min
 
 #Find the Mean (I want to also find the averages for each month)
+
 ```sql
 SELECT
   member_casual, AVG(ride_length) AS avg_ride
@@ -520,9 +534,11 @@ GROUP BY
 ORDER BY
   member_casual
 ```
+
       #Member = 1736.58413 or 0:28:57 min, Casual = 754.618827 or 0:12:35min
       
  #Count and percentages of rides
+ 
 ```sql
 Select
   count(*) AS count_rides, ROUND(COUNT(*) * 100 / SUM(COUNT(*)) OVER (),2) AS Percent, member_casual
@@ -533,10 +549,12 @@ GROUP BY
 ORDER BY
   count_rides DESC
 ```
+
       # 3463964 or 59.43% member, 2365120 or 40.57% casual
 
 #Final function for all above. 
 #Also median function in following./// // //
+
 ```sql
 CREATE TEMP FUNCTION 
     median (arr ANY type) AS (
@@ -560,6 +578,7 @@ GROUP BY
 ```
       
 #Bike type usage and percentages. 
+
 ```sql
 SELECT
     member_casual,
@@ -575,6 +594,7 @@ GROUP BY
 ORDER BY
     member_casual
 ```
+
             # Only on one day were electric bikes not used and only by casual renters.     
       
 
