@@ -1,8 +1,8 @@
 # Cyclistic-Case-Study-SQL
-###Using BigQuery to clean, transform and analyze data. 
+### Using BigQuery to clean, transform and analyze data. 
 
 ## Google Data Analytics Capstone Project
-###Cyclistic Case Study
+### Cyclistic Case Study
 ---
 
 # Introduction
@@ -50,7 +50,7 @@ Analyze the previous 12 months of historical data for Cyclistic bike rentals in 
 * Why would casual riders buy Cyclistic annual memberships?
 * How can Cyclistic use digital media to influence casual riders to become members?
 
-1.	PREPARE
+2.	PREPARE
 
 b.	Where is your data located? How is the data organized? 
 •	Data is located in CSV files that is made available by Motivate International Inc. publicly. 
@@ -74,7 +74,7 @@ b.	Where is your data located? How is the data organized?
 •	If this project were provided directly from an employer we would need to email to confirm that our conclusion on the missing stations was correct and if we it were possible to fill in the gaps missing in the data. 
 
 
-1.	PROCESS
+3.	PROCESS
 •	What tools are you choosing and why? 
 I am using a cloud SQL querying service through Google called BigQuery.  BigQuery is being used because it was the SQL language taught in the Google Data Analytics Certification Course. 
 Tableau will be used following the cleaning and analysis to visualize the data. It was also taught in the Google course. 
